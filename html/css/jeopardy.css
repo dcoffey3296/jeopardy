@@ -33,6 +33,18 @@ body {
 	padding:5px;
 }
 
+#correct_holder {
+	bottom:0px;
+	margin:auto;
+}
+
+#correct_holder td {
+	width:40%;
+	text-align: center;
+	font-size:50px;
+	color:white;
+}
+
 #board {
 	width:100%;
 	height:100%;
@@ -83,6 +95,14 @@ body {
 #question {
 	width:100%;
 	height:100%;
+}
+
+#right {
+	background-color:green;
+}
+
+#wrong {
+	background-color:red;
 }
 
 

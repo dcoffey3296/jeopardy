@@ -45,9 +45,14 @@ if ($game = json_decode(file_get_contents("boards/" . $_GET["f"])) == false)
 			<div id="fullscreen" style="display:none" class="square">
 				<div id="question"></div>
 				<div id="award_holder">
+					<table id="correct_holder" style="display:none">
+						<tr>
+							<td id="right">RIGHT</td><td id="wrong">WRONG</td>
+						</tr>
+					</table>
 					<table id="award">
 						<tr>
-							<td><?= $_GET["t1"] ?></td><td id="cancel">cancel</td><td><?= $_GET["t2"] ?></td>
+							<td id="award_t1"><?= $_GET["t1"] ?></td><td id="cancel">cancel</td><td id="award_t2"><?= $_GET["t2"] ?></td>
 						</tr>
 					</table>
 				</div>
