@@ -1,0 +1,142 @@
+{
+    "TFs" : {
+        "100" : {
+          "q" : "Lucas",
+          "a" : "Yessir",
+          "dj" : false
+        },
+        "200" : {
+          "q" : "Jason",
+          "a" : "Yup",
+          "dj" : false
+        },
+        "300" : {
+          "q" : "Milo",
+          "a" : "Woof",
+          "dj" : true
+        },
+        "400" : {
+          "q" : "R.J.",
+          "a" : "Toats",
+          "dj" : false
+        },
+        "500" : {
+          "q" : "David",
+          "a" : "Nope, he's the instructor?",
+          "dj" : false
+        }
+    },
+    
+    "Cat Names" : {
+        "100" : {
+          "q" : "Is Mittens a cat's name?",
+          "a" : "Yes",
+          "dj" : false
+        },
+        "200" : {
+          "q" : "Is George a Cat's name?",
+          "a" : "It can be.",
+          "dj" : false
+        },
+        "300" : {
+          "q" : "Is Milo a Cat's name?",
+          "a" : "Woof",
+          "dj" : false
+        },
+        "400" : {
+          "q" : "Is Inky a cat's name",
+          "a" : "Yes",
+          "dj" : false
+        },
+        "500" : {
+          "q" : "Is Timmy a cat's name?",
+          "a" : "Yes",
+          "dj" : false
+        }
+    },
+    
+    "Plants" : {
+        "100" : {
+          "q" : "Which plant produces berries that are blue?",
+          "a" : "Blueberry plant",
+          "dj" : false
+        },
+        "200" : {
+          "q" : "How tall is the largest Christmas Tree?",
+          "a" : "Very tall, I'd wager",
+          "dj" : false
+        },
+        "300" : {
+          "q" : "What kind of tree makes maple syrup",
+          "a" : "A Maple Tree",
+          "dj" : false
+        },
+        "400" : {
+          "q" : "______ Fur",
+          "a" : "Douglas",
+          "dj" : false
+        },
+        "500" : {
+          "q" : "Do Avocados grow on bushes or trees?",
+          "a" : "Trees",
+          "dj" : false
+        }
+    },
+    
+    "Kinds of Ice Cream" : {
+        "100" : {
+          "q" : "Is funfetti awesome",
+          "a" : "Funfetti is second to all chocolate flavors",
+          "dj" : false
+        },
+        "200" : {
+          "q" : "How good is vanilla?",
+          "a" : "Aweful.  Simply Aweful",
+          "dj" : false
+        },
+        "300" : {
+          "q" : "How much ice cream can Dan eat?",
+          "a" : "We have not yet reached the limit.",
+          "dj" : false
+        },
+        "400" : {
+          "q" : "Best flavor ever?",
+          "a" : "Charles River Crunch, Lizzy's ice cream",
+          "dj" : false
+        },
+        "500" : {
+          "q" : "What are the ingredients in ice cream?",
+          "a" : "Milk, cream, eggs, sugar, cold.",
+          "dj" : false
+        }
+    },
+    
+    "Potpourri" : {
+        "100" : {
+          "q" : "Where is Cambridge?",
+          "a" : "Next to Boston",
+          "dj" : false
+        },
+        "200" : {
+          "q" : "What kind of Drone does CS50 have?",
+          "a" : "A DJI Phantom",
+          "dj" : false
+        },
+        "300" : {
+          "q" : "What is the temperature outside?",
+          "a" : "F-ing cold.",
+          "dj" : false
+        },
+        "400" : {
+          "q" : "Best Starbucks Blend",
+          "a" : "Pike's Place",
+          "dj" : false
+        },
+        "500" : {
+          "q" : "Is making this game boring",
+          "a" : "Making up all of these questions certainly is!",
+          "dj" : false
+        }
+    }
+}
+        

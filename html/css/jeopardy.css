@@ -1,0 +1,40 @@
+
+
+body {
+	background-color:gray;
+}
+
+.controls {
+	padding:5px;
+}
+
+#board {
+	
+}
+
+#board_holder {
+	background-color:magenta;
+}
+
+
+#score {
+	width:20%;
+	background-color:orange;
+}
+
+.square {
+	min-height:50px;
+	width:13.33%;
+	background-color:blue;
+	float:left;
+	text-align:center;
+	color:yellow;
+	font-size: 25pt;
+	border:3px solid black;
+
+}
+
+.wrapper {
+	width:75%;
+	margin: 100px auto auto auto;
+}
