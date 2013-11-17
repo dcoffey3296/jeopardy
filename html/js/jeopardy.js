@@ -64,6 +64,9 @@ $(document).ready(function(){
 		award_team();
 		$("#correct_holder").css("display", "none");
 	});
+
+	play_sound("jeopardy_open.mp3");
+
 });
 
 function award_team()
@@ -124,6 +127,21 @@ function award_points(points, team){
 		
 		remove_and_update();
 	}
+}
+
+function play_sound(file)
+{
+	var audioElement = document.createElement('audio');
+    audioElement.setAttribute('src', 'assets/' + file);
+    audioElement.load()
+    $.get();
+
+    
+
+    audioElement.addEventListener("load", function() {
+    	console.log("playing " + file);
+        audioElement.play();
+      }, true);
 }
 
 function remove_and_update()
