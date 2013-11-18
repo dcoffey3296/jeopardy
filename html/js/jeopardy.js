@@ -1,3 +1,4 @@
+// global vars
 window.board = [];
 window.board.current_row = -1;
 window.board.current_column = -1;
@@ -8,7 +9,21 @@ window.score = {};
 window.score.t1 = 0;
 window.score.t2 = 0;
 
+// initialize
 $(document).ready(function(){
+	
+	// set scores if passed via get
+	if (query_string("t1_score") != null && parseInt(query_string("t1_score")) > 0)
+	{
+		window.score.t1 = parseInt(query_string("t1_score"));
+	}
+
+	if (query_string("t2_score") != null && parseInt(query_string("t2_score")) > 0)
+	{
+		window.score.t2 = parseInt(query_string("t2_score"));
+	}
+
+	// load and draw the board
 	load_board();
 
 	// set up event listeners
@@ -69,8 +84,7 @@ $(document).ready(function(){
 });
 
 // function to calculate the point value and call award_points() based on which is the global, current_team
-function award_team()
-{
+function award_team(){
 
 	// determine point value
 	var points = parseInt(window.board.current_question["value"]);
@@ -186,8 +200,7 @@ function load_board(){
 }
 
 // draws the table of the board from the global 2D array of the board data
-function draw_board()
-{
+function draw_board(){
 	var table = "<table id='board'>";
 	for (var i = 0; i <= window.board.height; i++)
 	{
@@ -213,7 +226,10 @@ function draw_board()
 		}
 		table += "</tr>";
 	}
-	table += "</table>"
+	table += "</table>";
+
+	// update the scores
+	update_scores();
 
 	// size the text according to the screen
 	$("#board_holder").append(table);
@@ -222,12 +238,17 @@ function draw_board()
 	jQuery("#award td").fitText(1.0, { minFontSize: '50px'});
 	jQuery("#t1_holder").fitText(1.0, { minFontSize: '30px'});
 	jQuery("#t2_holder").fitText(1.0, { minFontSize: '30px'});
+}
 
+// function to get a specified query parameter from the get string: http://stackoverflow.com/questions/7731778/jquery-get-query-string-parameters
+function query_string(key) {
+    key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
+    var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
+    return match && decodeURIComponent(match[1].replace(/\+/g, " "));
 }
 
 // removes a question from the 2D board array and the value from the board on screen
-function remove_and_update()
-{
+function remove_and_update(){
 	// remove the question
 	window.board[window.board.current_row][window.board.current_column] = "answered";
 
@@ -245,8 +266,7 @@ function reveal_answer(){
 }
 
 // un-hides the buttons to mark a team's answer correct or incorrect
-function show_correct()
-{
+function show_correct(){
 	$("#correct_holder").css("display", "table");
 }
 

@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 $teams = 2;
 $json = "filename";
@@ -36,8 +36,8 @@ if ($game = json_decode(file_get_contents("boards/" . $_GET["f"])) == false)
 	</head>
 	<body>
 		<div id="score_holder">
-			<div id="t1_holder" class="scorecard"><?= $_GET["t1"] ?><div id="t1_score">0</div></div>
-			<div id="t2_holder" class="scorecard"><?= $_GET["t2"] ?><div id="t2_score">0</div></div>
+			<div id="t1_holder" class="scorecard"><?= $_GET["t1"] ?><div id="t1_score"></div></div>
+			<div id="t2_holder" class="scorecard"><?= $_GET["t2"] ?><div id="t2_score"></div></div>
 		</div>
 		
 
