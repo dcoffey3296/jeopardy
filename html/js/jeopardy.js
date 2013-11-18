@@ -143,6 +143,21 @@ function award_points(points, team){
 	}
 }
 
+// returns true if all of the questions have been answered
+function check_complete(){
+	for (var i = 0; i < window.board.length; i++)
+	{
+		for (var j = 0; j < window.board[i].length; j++)
+		{
+			if (window.board[i][j] != "answered")
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
 // closes the full-screen question and hides the correctness buttons.  Also calls clear_rowcol()
 function close_fullscreen(){
 
@@ -164,6 +179,10 @@ function close_fullscreen(){
 function clear_rowcol(){
 	window.board.current_column = -1;
 	window.board.current_row = -1;
+}
+
+function goto_next_round(){
+	console.log("TODO");
 }
 
 // loads the global version of the 2D board array from the php inserted .json data
@@ -261,6 +280,12 @@ function remove_and_update(){
 
 	// close thei window
 	close_fullscreen();
+
+	// check if the round is over
+	if (check_complete())
+	{
+		goto_next_round();
+	}
 }
 
 // replaces the question text with the answer text
@@ -308,7 +333,7 @@ function show_question(click){
 function update_scores(){
 	$("#t1_score").html(window.score.t1);
 	$("#t2_score").html(window.score.t2);
-}
+}	
 
 
 
