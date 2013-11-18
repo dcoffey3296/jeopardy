@@ -147,13 +147,17 @@ function award_points(points, team){
 function close_fullscreen(){
 
 	window.board.answer_showing = false;
-	$("#fullscreen").fadeOut(function(){
-		$("#question").html("");
-		clear_rowcol();
+	
+	setTimeout(function(){
+		$("#fullscreen").fadeOut(function(){
+			$("#question").html("");
+			clear_rowcol();
 
-		// hide the correctness buttons
-		$("#correct_holder").css("display", "none");
-	});
+			// hide the correctness buttons
+			$("#correct_holder").css("display", "none");
+		});
+	}, 1500);
+	
 }
 
 // clears the globals for the current row and current column
