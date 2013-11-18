@@ -65,10 +65,10 @@ $(document).ready(function(){
 		$("#correct_holder").css("display", "none");
 	});
 
-	play_sound("jeopardy_open.mp3");
 
 });
 
+// function to calculate the point value and call award_points() based on which is the global, current_team
 function award_team()
 {
 
@@ -92,6 +92,7 @@ function award_team()
 	}
 }
 
+// adds poings to team score globals and calls update_scores() to re-draw the scores
 function award_points(points, team){
 	if (team == "t1"){
 		window.score.t1 += points;
@@ -118,7 +119,6 @@ function award_points(points, team){
 		if (window.board.answer_showing == false)
 		{
 			reveal_answer();
-			
 		}
 		else
 		{
@@ -129,33 +129,7 @@ function award_points(points, team){
 	}
 }
 
-function play_sound(file)
-{
-	var audioElement = document.createElement('audio');
-    audioElement.setAttribute('src', 'assets/' + file);
-    audioElement.load()
-    $.get();
-
-    
-
-    audioElement.addEventListener("load", function() {
-    	console.log("playing " + file);
-        audioElement.play();
-      }, true);
-}
-
-function remove_and_update()
-{
-	// remove the question
-	window.board[window.board.current_row][window.board.current_column] = "answered";
-
-	// clear number from the screen
-	$("#r-" + window.board.current_row).children("#c-" + window.board.current_column).html("");
-
-	// close thei window
-	close_fullscreen();
-}
-
+// closes the full-screen question and hides the correctness buttons.  Also calls clear_rowcol()
 function close_fullscreen(){
 
 	window.board.answer_showing = false;
@@ -168,49 +142,13 @@ function close_fullscreen(){
 	});
 }
 
+// clears the globals for the current row and current column
 function clear_rowcol(){
 	window.board.current_column = -1;
 	window.board.current_row = -1;
 }
 
-function show_question(click){
-	var element = click.target;
-	window.board.current_column = $(element).attr('id').replace(/^\D+/g, '');
-	window.board.current_row = $(element).parent().attr('id').replace(/^\D+/g, '');
-
-	// don't react to already answered questions
-	if (window.board[window.board.current_row][window.board.current_column] == "answered")
-	{
-		return;
-	}
-
-	// no one has tried to answer yet
-	window.board.t1answered = false;
-	window.board.t2answered = false;
-
-	// remember this question for easy access
-	window.board.current_question = window.board[window.board.current_row][window.board.current_column];
-
-	var dd = "";
-	// check if daily double
-	if (window.board.current_question.question.dj == true)
-	{
-		dd = "Daily Double: ";
-	}
-
-
-
-	$("#question").html(dd + window.board[window.board.current_row][window.board.current_column].question.q).fitText(1.0, { minFontSize: '100px'});
-	$("#fullscreen").fadeIn();
-	console.log(window.board[window.board.current_row][window.board.current_column].question.q + " for " + window.board[window.board.current_row][window.board.current_column].value);
-}
-
-function reveal_answer(){
-	window.board.answer_showing = true;
-	$("#question").html("Answer: " + window.board[window.board.current_row][window.board.current_column].question.a);
-}
-
-
+// loads the global version of the 2D board array from the php inserted .json data
 function load_board(){
 	var current_row = 0;
 	var current_column = 0;
@@ -244,12 +182,10 @@ function load_board(){
 
 	window.board.height = height;
 	window.board.width = width;
-	// console.log("width = " + width);
-	// console.log("height = " + height);
-	// console.log(window.board);
 	draw_board();
 }
 
+// draws the table of the board from the global 2D array of the board data
 function draw_board()
 {
 	var table = "<table id='board'>";
@@ -279,6 +215,7 @@ function draw_board()
 	}
 	table += "</table>"
 
+	// size the text according to the screen
 	$("#board_holder").append(table);
 	jQuery("#board th").fitText(0.85);
 	jQuery("#board td").fitText(0.45);
@@ -288,13 +225,62 @@ function draw_board()
 
 }
 
+// removes a question from the 2D board array and the value from the board on screen
+function remove_and_update()
+{
+	// remove the question
+	window.board[window.board.current_row][window.board.current_column] = "answered";
 
+	// clear number from the screen
+	$("#r-" + window.board.current_row).children("#c-" + window.board.current_column).html("");
 
+	// close thei window
+	close_fullscreen();
+}
+
+// replaces the question text with the answer text
+function reveal_answer(){
+	window.board.answer_showing = true;
+	$("#question").html("Answer: " + window.board[window.board.current_row][window.board.current_column].question.a);
+}
+
+// un-hides the buttons to mark a team's answer correct or incorrect
 function show_correct()
 {
 	$("#correct_holder").css("display", "table");
 }
 
+// gets the clicked coordinates, checks the global array if the quesiton has been answered, if not tracks who has answered and whether or not a square is a daily double.  Lastly, it inserts the question fullscreen
+function show_question(click){
+	var element = click.target;
+	window.board.current_column = $(element).attr('id').replace(/^\D+/g, '');
+	window.board.current_row = $(element).parent().attr('id').replace(/^\D+/g, '');
+
+	// don't react to already answered questions
+	if (window.board[window.board.current_row][window.board.current_column] == "answered")
+	{
+		return;
+	}
+
+	// no one has tried to answer yet
+	window.board.t1answered = false;
+	window.board.t2answered = false;
+
+	// remember this question for easy access
+	window.board.current_question = window.board[window.board.current_row][window.board.current_column];
+
+	var dd = "";
+	// check if daily double
+	if (window.board.current_question.question.dj == true)
+	{
+		dd = "Daily Double: ";
+	}
+
+	$("#question").html(dd + window.board[window.board.current_row][window.board.current_column].question.q).fitText(1.0, { minFontSize: '100px'});
+	$("#fullscreen").fadeIn();
+}
+
+// re-draws the scores on the screen according to the global values
 function update_scores(){
 	$("#t1_score").html(window.score.t1);
 	$("#t2_score").html(window.score.t2);
