@@ -32,6 +32,8 @@ $(document).ready(function(){
 	});
 
 	$("#cancel").bind("click", event, function(){
+		style_clicked(event.target);
+
 		// if the answer was showing, no one got it right, remove the question
 		if (window.board.answer_showing == true)
 		{
@@ -54,6 +56,8 @@ $(document).ready(function(){
 			return;
 		}
 
+		style_clicked(event.target);
+
 		show_correct();
 		window.board.current_team = "t1";
 	});
@@ -65,17 +69,22 @@ $(document).ready(function(){
 			return;
 		}
 
+		style_clicked(event.target);
+
 		show_correct();
 		window.board.current_team = "t2";
 	});
 
 	$("#right").bind("click", function(){
 		window.board.correct = true;
+		style_clicked(event.target);
 		award_team();
+		$("#correct_holder").css("display", "none");
 	});
 
 	$("#wrong").bind("click", function(){
 		window.board.correct = false;
+		style_clicked(event.target);
 		award_team();
 		$("#correct_holder").css("display", "none");
 	});
@@ -129,17 +138,26 @@ function award_points(points, team){
 	// only remove and update if both teams have had a chance to answer or correct answer
 	if (window.board.correct == true || (window.board.t1answered == true && window.board.t2answered == true))
 	{
+		
+		reveal_answer();
 		// show the answer for 2 seconds if it's not up yet
 		if (window.board.answer_showing == false)
 		{
-			reveal_answer();
+			// show the answer and wait 1.5 secs before closing
+			setTimeout(function(){
+				remove_and_update();
+				console.log("top");
+				return;
+			}, 1500);
 		}
 		else
 		{
-			reveal_answer();
+			console.log("bottom");
+			remove_and_update();
+			return;
 		}
 		
-		remove_and_update();
+		
 	}
 }
 
@@ -161,17 +179,20 @@ function check_complete(){
 // closes the full-screen question and hides the correctness buttons.  Also calls clear_rowcol()
 function close_fullscreen(){
 
-	window.board.answer_showing = false;
 	
-	setTimeout(function(){
+	
+	// setTimeout(function(){
 		$("#fullscreen").fadeOut(function(){
 			$("#question").html("");
 			clear_rowcol();
 
 			// hide the correctness buttons
 			$("#correct_holder").css("display", "none");
+			reset_all_clicked();
 		});
-	}, 1500);
+		window.board.answer_showing = false;
+	// }, 1500);
+
 	
 }
 
@@ -288,6 +309,17 @@ function remove_and_update(){
 	}
 }
 
+// reset all button CSS
+function reset_all_clicked(){
+	var buttons = ["#right", "#wrong", "#award_t1", "#award_t2", "#cancel"];
+	console.log("in reset");
+	for (var b in buttons)
+	{
+		console.log("resetting " + buttons[b]);
+		style_clicked_reset(buttons[b]);
+	}
+}
+
 // replaces the question text with the answer text
 function reveal_answer(){
 	window.board.answer_showing = true;
@@ -327,6 +359,15 @@ function show_question(click){
 
 	$("#question").html(dd + window.board[window.board.current_row][window.board.current_column].question.q).fitText(1.0, { minFontSize: '100px'});
 	$("#fullscreen").fadeIn();
+}
+
+// gray out clicked things
+function style_clicked(selector){
+	$(selector).css("background-color", "gray");
+}
+
+function style_clicked_reset(selector){
+	$(selector).removeAttr('style');
 }
 
 // re-draws the scores on the screen according to the global values
