@@ -80,6 +80,7 @@ $(document).ready(function(){
 		style_clicked(event.target);
 		award_team();
 		$("#correct_holder").css("display", "none");
+		reset_all_clicked();
 	});
 
 	$("#wrong").bind("click", function(){
@@ -87,6 +88,7 @@ $(document).ready(function(){
 		style_clicked(event.target);
 		award_team();
 		$("#correct_holder").css("display", "none");
+		reset_all_clicked();
 	});
 
 
@@ -367,7 +369,7 @@ function style_clicked(selector){
 }
 
 function style_clicked_reset(selector){
-	$(selector).removeAttr('style');
+	$(selector).css('background-color', "");
 }
 
 // re-draws the scores on the screen according to the global values
