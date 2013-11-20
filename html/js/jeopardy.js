@@ -495,7 +495,7 @@ function show_keyboard(after){
 		}
 	});
 
-	$("keyboard").focus();
+	$("#keyboard").focus();
 	
 }
 
