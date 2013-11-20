@@ -15,9 +15,6 @@ if ($game = json_decode(file_get_contents("boards/" . $_GET["f"])) == false)
 	exit;
 }
 
-print_r($_GET);
-die();
-
 
 ?>
 <!DOCTYPE html>
