@@ -469,6 +469,13 @@ function show_keyboard(after){
 
 
 	$("#dialog").dialog();
+	$("body").on("keypress", "#keyboard", function(press){
+		if (press.keCode == 13)
+		{
+			$("#dialog").focus();
+		}
+	});
+
 	$("keyboard").focus();
 	$("keyboard").blur(function(){
 		if (isNaN(parseInt($("#keyboard").val())) || parseInt($("#keyboard").val()) < 1)
