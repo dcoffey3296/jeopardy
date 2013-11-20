@@ -11,7 +11,8 @@ window.score = {};
 window.score.t1 = 0;
 window.score.t2 = 0;
 window.round = 0;
-window.jeopardy.doublefile = "";
+window.jeopardy.f1 = "";
+window.jeopardy.f2 = "";
 window.jeopardy.disable_clicks = false;
 
 // initialize
@@ -40,9 +41,15 @@ $(document).ready(function(){
 	}
 
 	// store double jeopardy round if we were given a board
+	if (query_string("f1") != null && parseInt(query_string("f1")) !="")
+	{
+		window.jeopardy.f1 = query_string("f1");
+	}
+
+	// store final jeopardy round if we were given a board
 	if (query_string("f2") != null && parseInt(query_string("f2")) !="")
 	{
-		window.jeopardy.doublefile = query_string("f2");
+		window.jeopardy.f2 = query_string("f2");
 	}
 
 	// check if this is for final jeopardy
@@ -292,11 +299,16 @@ function clear_rowcol(){
 }
 
 function goto_next_round(){
-	var redirect = "jeopardy.php?t1=" + $("#t1_score").val() + "&t2=" + $("#t1_score").val() + "&t1=" + $("#t1_holder").val() + "&t2=" + $("#t2_holder").val() + "&r=" + (parseInt(window.round) + 1);
+	var redirect = "jeopardy.php?t1=" + $("#t1_score").val() + "&t2=" + $("#t1_score").val() + "&t1=" + $("#t1_holder").val() + "&t2=" + $("#t2_holder").val() + "&r=" + (parseInt(window.round) + 1) + "&f1=" . window.jeopardy;
 
-	if (parseInt(window.round) == 1)
+	// send to the appropriate file
+	if (parseInt(window.round) == 0)
 	{
-		redirect += "&f=" + window.jeopardy.doublefile;
+		redirect += "&f=" + window.jeopardy.f1;
+	}
+	else if (parseInt(window.round) == 1)
+	{
+		redirect += "&f=" + window.jeopardy.f2;
 	}
 
 	// don't continue after final jeopardy
@@ -523,7 +535,7 @@ function show_question(click){
 	if (window.jeopardy.current_question.question.dj == true)
 	{
 		play_sound("daily_double");
-		dd = "Daily Double: ";
+		dd = "Daily Double ";
 
 		// disable clicks elsewhere until input is reached
 		window.jeopardy.disable_clicks = true;
@@ -532,7 +544,7 @@ function show_question(click){
 
 		// show the keyboard then do the following:
 		show_keyboard(function(){
-			$("#question").html(dd + window.board[window.jeopardy.current_row][window.jeopardy.current_column].question.q).fitText(1.0, { minFontSize: '100px'});
+			$("#question").html(dd + "for " window.jeopardy.keyboard + ": " + window.board[window.jeopardy.current_row][window.jeopardy.current_column].question.q).fitText(1.0, { minFontSize: '100px'});
 			window.jeopardy.disable_clicks = false;
 		});
 

@@ -3,7 +3,7 @@
 $teams = 2;
 $json = "filename";
 
-if (!isset($_GET["t1"]) || !isset($_GET["t2"]) || !isset($_GET["f"]) || !file_exists("boards/" . $_GET["f"]))
+if (!isset($_GET["t1"]) || !isset($_GET["t2"]) || !isset($_GET["f0"]) || !file_exists("boards/" . $_GET["f0"] || !isset($_GET["f1"]) || !file_exists("boards/" . $_GET["f1"] || !isset($_GET["f2"]) || !file_exists("boards/" . $_GET["f2"]))
 {
 	header("Location: index.php");
 	exit;
@@ -14,6 +14,9 @@ if ($game = json_decode(file_get_contents("boards/" . $_GET["f"])) == false)
 	header("Location: index.php");
 	exit;
 }
+
+print_r($_GET);
+die();
 
 
 ?>

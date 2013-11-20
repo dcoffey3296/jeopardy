@@ -1,5 +1,20 @@
 <?php
 
+	$select = "";
+	// get dir listing of boards
+	if ($handle = opendir("boards")) {
+    while (false !== ($file = readdir($handle)))
+    {
+        if ($file != "." && $file != ".." && strtolower(substr($file, strrpos($file, '.') + 1)) == 'json')
+        {
+            $select = "<option value='$file'>$file</option>";
+        }
+    }
+    closedir($handle);
+
+}
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,9 +31,23 @@
 		        <fieldset>  
 		          <legend>Game Info</legend>  
 		          <div class="control-group">  
-		            <label class="control-label" for="f">Source File</label>  
+		            <label class="control-label" for="f0">Round 1 File</label>  
 		            <div class="controls">  
-		              <input type="text" class="input-xlarge" id="f" name="f">  
+		              <select name="f0">
+		              	<?= $select ?>
+		              </select> 
+		            </div> 
+		            <label class="control-label" for="f1">Double Jeopardy File</label>  
+		            <div class="controls">  
+		              <select name="f1">
+		              	<?= $select ?>
+		              </select> 
+		            </div> 
+		            <label class="control-label" for="f2">Final Jeopardy File</label>  
+		            <div class="controls">  
+		              <select name="f2">
+		              	<?= $select ?>
+		              </select> 
 		            </div> 
 		            <label class="control-label" for="t1">Team 1</label>  
 		            <div class="controls">  
@@ -28,6 +57,7 @@
 		            <div class="controls">  
 		              <input type="text" class="input-xlarge" id="t2" name="t2">  
 		            </div> 
+		            	<input type="text"  name="r" value="0" style="visibility:hidden;"></input>
 		          </div>  
 		          <div class="form-actions">  
 		            <button type="submit" class="btn btn-primary">GO!</button>  
