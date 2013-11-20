@@ -299,16 +299,16 @@ function clear_rowcol(){
 }
 
 function goto_next_round(){
-	var redirect = "jeopardy.php?t1=" + $("#t1_score").val() + "&t2=" + $("#t1_score").val() + "&t1=" + $("#t1_holder").val() + "&t2=" + $("#t2_holder").val() + "&r=" + (parseInt(window.round) + 1) + "&f1=" . window.jeopardy;
+	var redirect = "jeopardy.php?t1=" + $("#t1_score").val() + "&t2=" + $("#t1_score").val() + "&t1=" + $("#t1_holder").val() + "&t2=" + $("#t2_holder").val() + "&r=" + (parseInt(window.round) + 1) + "&f1=" + window.jeopardy.f1 + "&f2=" + window.jeopardy.f2;
 
 	// send to the appropriate file
 	if (parseInt(window.round) == 0)
 	{
-		redirect += "&f=" + window.jeopardy.f1;
+		redirect += "&cf=" + window.jeopardy.f1;
 	}
 	else if (parseInt(window.round) == 1)
 	{
-		redirect += "&f=" + window.jeopardy.f2;
+		redirect += "&cf=" + window.jeopardy.f2;
 	}
 
 	// don't continue after final jeopardy
@@ -544,7 +544,7 @@ function show_question(click){
 
 		// show the keyboard then do the following:
 		show_keyboard(function(){
-			$("#question").html(dd + "for " window.jeopardy.keyboard + ": " + window.board[window.jeopardy.current_row][window.jeopardy.current_column].question.q).fitText(1.0, { minFontSize: '100px'});
+			$("#question").html(dd + "for " + window.jeopardy.keyboard + ": " + window.board[window.jeopardy.current_row][window.jeopardy.current_column].question.q).fitText(1.0, { minFontSize: '100px'});
 			window.jeopardy.disable_clicks = false;
 		});
 

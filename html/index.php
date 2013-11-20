@@ -31,9 +31,9 @@
 		        <fieldset>  
 		          <legend>Game Info</legend>  
 		          <div class="control-group">  
-		            <label class="control-label" for="f0">Round 1 File</label>  
+		            <label class="control-label" for="cf">Round 1 File</label>  
 		            <div class="controls">  
-		              <select name="f0">
+		              <select name="cf">
 		              	<?= $select ?>
 		              </select> 
 		            </div> 

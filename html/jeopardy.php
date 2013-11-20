@@ -1,17 +1,17 @@
-	<?php
+<?php
 
 $teams = 2;
 $json = "filename";
 
-if (!isset($_GET["t1"]) || !isset($_GET["t2"]) || !isset($_GET["f0"]) || !file_exists("boards/" . $_GET["f0"] || !isset($_GET["f1"]) || !file_exists("boards/" . $_GET["f1"] || !isset($_GET["f2"]) || !file_exists("boards/" . $_GET["f2"]))
+if (!isset($_GET["t1"]) || !isset($_GET["t2"]) || !isset($_GET["cf"]) || !file_exists("boards/" . $_GET["cf"]) || !isset($_GET["f1"]) || !file_exists("boards/" . $_GET["f1"]) || !isset($_GET["f2"]) || !file_exists("boards/" . $_GET["f2"]))
 {
-	header("Location: index.php");
+	header("Location: index.php?1");
 	exit;
 }
 
-if ($game = json_decode(file_get_contents("boards/" . $_GET["f"])) == false)
+if ($game = json_decode(file_get_contents("boards/" . $_GET["cf"])) == false)
 {
-	header("Location: index.php");
+	header("Location: index.php?2");
 	exit;
 }
 
@@ -47,7 +47,7 @@ if ($game = json_decode(file_get_contents("boards/" . $_GET["f"])) == false)
 		<link rel="stylesheet" type="text/css" href="css/jeopardy.css"/>
 
 		<script type="text/javascript">
-			<?php echo "window.data = " . file_get_contents("boards/" . $_GET["f"]) ?>
+			<?= "window.data = " . file_get_contents("boards/" . $_GET["cf"]) ?>
 		</script>
 	</head>
 	<body>
