@@ -470,7 +470,7 @@ function show_keyboard(after){
 
 	$("#dialog").dialog();
 	$("body").on("keypress", "#keyboard", function(press){
-		if (press.keCode == 13)
+		if (press.keyCode == 13)
 		{
 			$("#dialog").focus();
 		}
