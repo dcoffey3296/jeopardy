@@ -1,13 +1,18 @@
 // global vars
 window.board = [];
-window.board.current_row = -1;
+window.jeopardy = {};
+window.jeopardy.answer_showing = false;
+window.jeopardy.current_row = -1;
 window.board.current_column = -1;
-window.board.current_team = -1;
-window.board.current_question = null;
+window.jeopardy.current_team = -1;
+window.jeopardy.current_question = null;
 window.categories = [];
 window.score = {};
 window.score.t1 = 0;
 window.score.t2 = 0;
+window.round = 0;
+window.jeopardy.doublefile = "";
+window.jeopardy.disable_clicks = false;
 
 // initialize
 $(document).ready(function(){
@@ -26,6 +31,30 @@ $(document).ready(function(){
 	// load and draw the board
 	load_board();
 
+	play_sound("populate");
+
+	// check if this is for final jeopardy
+	if (query_string("r") != null && parseInt(query_string("r")) > 0)
+	{
+		window.round = parseInt(query_string("r"));
+	}
+
+	// store double jeopardy round if we were given a board
+	if (query_string("f2") != null && parseInt(query_string("f2")) !="")
+	{
+		window.jeopardy.doublefile = query_string("f2");
+	}
+
+	// check if this is for final jeopardy
+	if (window.round == 3)
+	{
+		play_sound("final_jeopardy");
+		alert("final_jeopardy");
+	}
+
+
+
+
 	// set up event listeners
 	$("#board td").bind("click", event, function(){
 		show_question(event);
@@ -35,7 +64,7 @@ $(document).ready(function(){
 		style_clicked(event.target);
 
 		// if the answer was showing, no one got it right, remove the question
-		if (window.board.answer_showing == true)
+		if (window.jeopardy.answer_showing == true)
 		{
 			remove_and_update();
 		}
@@ -45,13 +74,26 @@ $(document).ready(function(){
 	});
 
 	$("#question").bind("click", function(){
+
+		// ignore input if supposed to
+		if (window.jeopardy.disable_clicks == true)
+		{
+			return;
+		}
+
 		reveal_answer();
 	});
 
 	$("#award_t1").bind("click", function(){
 
+		// ignore input if supposed to
+		if (window.jeopardy.disable_clicks == true)
+		{
+			return;
+		}
+
 		// don't accept more than one answer per question
-		if (window.board.t1answered == true)
+		if (window.jeopardy.t1answered == true)
 		{
 			return;
 		}
@@ -59,12 +101,19 @@ $(document).ready(function(){
 		style_clicked(event.target);
 
 		show_correct();
-		window.board.current_team = "t1";
+		window.jeopardy.current_team = "t1";
 	});
 
 	$("#award_t2").bind("click", function(){
+
+		// ignore input if supposed to
+		if (window.jeopardy.disable_clicks == true)
+		{
+			return;
+		}
+
 		// don't accept more than one answer per question
-		if (window.board.t2answered == true)
+		if (window.jeopardy.t2answered == true)
 		{
 			return;
 		}
@@ -72,11 +121,26 @@ $(document).ready(function(){
 		style_clicked(event.target);
 
 		show_correct();
-		window.board.current_team = "t2";
+		window.jeopardy.current_team = "t2";
+	});
+
+	$("board th").bind("click", function(){
+
+		play_sound("jeopardy_open");
+
+		// once played, disable
+		$("board th").off("click");
 	});
 
 	$("#right").bind("click", function(){
-		window.board.correct = true;
+		// ignore input if supposed to
+		if (window.jeopardy.disable_clicks == true)
+		{
+			return;
+		}
+
+		play_sound("ding");
+		window.jeopardy.correct = true;
 		style_clicked(event.target);
 		award_team();
 		$("#correct_holder").css("display", "none");
@@ -84,7 +148,16 @@ $(document).ready(function(){
 	});
 
 	$("#wrong").bind("click", function(){
-		window.board.correct = false;
+		console.log("click-wrong() = " + window.jeopardy.answer_showing);
+
+		// ignore input if supposed to
+		if (window.jeopardy.disable_clicks == true)
+		{
+			return;
+		}
+
+		play_sound("buzz");
+		window.jeopardy.correct = false;
 		style_clicked(event.target);
 		award_team();
 		$("#correct_holder").css("display", "none");
@@ -98,34 +171,49 @@ $(document).ready(function(){
 function award_team(){
 
 	// determine point value
-	var points = parseInt(window.board.current_question["value"]);
+	var points = 0;
+	if (window.jeopardy.current_question.question.dj == true)
+	{
+		// use the last user input if it's double jeopardy
+		points = window.jeopardy.keyboard;
+
+		// special case: mark both teams as answered so second team can't steal
+		window.jeopardy.t1answered = true;
+		window.jeopardy.t2answered = true;
+	}
+	else
+	{
+		points = parseInt(window.jeopardy.current_question["value"]);
+	}
+	
 
 	// if incorrect, subtract the points
-	if (window.board.correct != true)
+	if (window.jeopardy.correct != true)
 	{
 		points = points * -1;
 	}
 
 	// if daily double, * 2
-	if (window.board.current_question.dj == true)
+	if (window.jeopardy.current_question.dj == true)
 	{
-		award_points((points * 2), window.board.current_team);
+		award_points((points * 2), window.jeopardy.current_team);
 	}
 	else
 	{
-		award_points(points, window.board.current_team);
+		award_points(points, window.jeopardy.current_team);
 	}
 }
 
 // adds poings to team score globals and calls update_scores() to re-draw the scores
 function award_points(points, team){
+	console.log("award_points() = " + window.jeopardy.answer_showing);
 	if (team == "t1"){
 		window.score.t1 += points;
-		window.board.t1answered = true;
+		window.jeopardy.t1answered = true;
 	}
 	else if (team == "t2"){
 		window.score.t2 += points;
-		window.board.t2answered = true;
+		window.jeopardy.t2answered = true;
 	}
 	else
 	{
@@ -135,26 +223,31 @@ function award_points(points, team){
 
 	// update the scores
 	update_scores();
-	window.board.current_team = -1;
+	window.jeopardy.current_team = -1;
 
 	// only remove and update if both teams have had a chance to answer or correct answer
-	if (window.board.correct == true || (window.board.t1answered == true && window.board.t2answered == true))
+	if (window.jeopardy.correct == true || (window.jeopardy.t1answered == true && window.jeopardy.t2answered == true))
 	{
-		
-		reveal_answer();
 		// show the answer for 2 seconds if it's not up yet
-		if (window.board.answer_showing == false)
+		if (window.jeopardy.answer_showing == false)
 		{
+			console.log("answer = " + window.jeopardy.answer_showing);
+			reveal_answer(function(){
+					setTimeout(function(){
+					remove_and_update();
+					console.log("top");
+					return;
+				}, 1500);
+			});
 			// show the answer and wait 1.5 secs before closing
-			setTimeout(function(){
-				remove_and_update();
-				console.log("top");
-				return;
-			}, 1500);
+			
 		}
 		else
 		{
 			console.log("bottom");
+			console.log("answer = " + window.jeopardy.answer_showing);
+			reveal_answer();
+			
 			remove_and_update();
 			return;
 		}
@@ -181,9 +274,6 @@ function check_complete(){
 // closes the full-screen question and hides the correctness buttons.  Also calls clear_rowcol()
 function close_fullscreen(){
 
-	
-	
-	// setTimeout(function(){
 		$("#fullscreen").fadeOut(function(){
 			$("#question").html("");
 			clear_rowcol();
@@ -192,20 +282,30 @@ function close_fullscreen(){
 			$("#correct_holder").css("display", "none");
 			reset_all_clicked();
 		});
-		window.board.answer_showing = false;
-	// }, 1500);
-
-	
+		window.jeopardy.answer_showing = false;
 }
 
 // clears the globals for the current row and current column
 function clear_rowcol(){
-	window.board.current_column = -1;
-	window.board.current_row = -1;
+	window.jeopardy.current_column = -1;
+	window.jeopardy.current_row = -1;
 }
 
 function goto_next_round(){
-	console.log("TODO");
+	var redirect = "jeopardy.php?t1=" + $("#t1_score").val() + "&t2=" + $("#t1_score").val() + "&t1=" + $("#t1_holder").val() + "&t2=" + $("#t2_holder").val() + "&r=" + (parseInt(window.round) + 1);
+
+	if (parseInt(window.round) == 1)
+	{
+		redirect += "&f=" + window.jeopardy.doublefile;
+	}
+
+	// don't continue after final jeopardy
+	if (window.round == 2)
+	{
+		return;
+	}
+
+	window.location.replace(redirect);
 }
 
 // loads the global version of the 2D board array from the php inserted .json data
@@ -240,15 +340,15 @@ function load_board(){
 		width++;
 	}
 
-	window.board.height = height;
-	window.board.width = width;
+	window.jeopardy.height = height;
+	window.jeopardy.width = width;
 	draw_board();
 }
 
 // draws the table of the board from the global 2D array of the board data
 function draw_board(){
 	var table = "<table id='board'>";
-	for (var i = 0; i <= window.board.height; i++)
+	for (var i = 0; i <= window.jeopardy.height; i++)
 	{
 		if (i == 0)
 		{
@@ -259,15 +359,15 @@ function draw_board(){
 			table += "<tr id='r-" + (i - 1) + "'>";
 		}
 		
-		for (var j = 0; j <= window.board.width - 1; j++)
+		for (var j = 0; j <= window.jeopardy.width - 1; j++)
 		{
 			if (i == 0)
 			{
-				table += "<th style='height: " + (100 / (window.board.height + 1)) + "%; width: " + (100 / window.board.width) + "%' class='square'>" + window.categories[j] + "</th>";
+				table += "<th style='height: " + (100 / (window.jeopardy.height + 1)) + "%; width: " + (100 / window.jeopardy.width) + "%' class='square'>" + window.categories[j] + "</th>";
 			}
 			else
 			{
-				table += "<td id='c-" + j + "' style='height: " + (100 / (window.board.height + 1)) + "%; width: " + (100 / window.board.width) + "%' class='square'>" + window.board[i - 1][j].value + "</td>";
+				table += "<td id='c-" + j + "' style='height: " + (100 / (window.jeopardy.height + 1)) + "%; width: " + (100 / window.jeopardy.width) + "%' class='square'>" + window.board[i - 1][j].value + "</td>";
 			}
 		}
 		table += "</tr>";
@@ -286,6 +386,12 @@ function draw_board(){
 	jQuery("#t2_holder").fitText(1.0, { minFontSize: '30px'});
 }
 
+// function to play sounds
+function play_sound(sound)
+{
+	document.getElementById('sound_' + sound).play();
+}
+
 // function to get a specified query parameter from the get string: http://stackoverflow.com/questions/7731778/jquery-get-query-string-parameters
 function query_string(key) {
     key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
@@ -296,10 +402,10 @@ function query_string(key) {
 // removes a question from the 2D board array and the value from the board on screen
 function remove_and_update(){
 	// remove the question
-	window.board[window.board.current_row][window.board.current_column] = "answered";
+	window.board[window.jeopardy.current_row][window.jeopardy.current_column] = "answered";
 
 	// clear number from the screen
-	$("#r-" + window.board.current_row).children("#c-" + window.board.current_column).html("");
+	$("#r-" + window.jeopardy.current_row).children("#c-" + window.jeopardy.current_column).html("");
 
 	// close thei window
 	close_fullscreen();
@@ -323,9 +429,14 @@ function reset_all_clicked(){
 }
 
 // replaces the question text with the answer text
-function reveal_answer(){
-	window.board.answer_showing = true;
-	$("#question").html("Answer: " + window.board[window.board.current_row][window.board.current_column].question.a);
+function reveal_answer(after){
+	console.log('reveal answer() = ' + window.jeopardy.answer_showing);
+	window.jeopardy.answer_showing = true;
+	$("#question").html("Answer: " + window.board[window.jeopardy.current_row][window.jeopardy.current_column].question.a);
+	if(typeof after != 'undefined')
+	{
+		after();
+	}
 }
 
 // un-hides the buttons to mark a team's answer correct or incorrect
@@ -333,33 +444,72 @@ function show_correct(){
 	$("#correct_holder").css("display", "table");
 }
 
+// pop up the virtual keyboard
+function show_keyboard(after){
+	// initialize the number pad, setup callbacks
+	$('#keyboard').keyboard({layout: 'num', accepted:function(callback){
+		if (isNaN(parseInt($("#keyboard").val())) || parseInt($("#keyboard").val()) < 1)
+		{
+			console.log("not a number");
+			$("#keyboard").getkeyboard().destroy();
+			$("#keyboard").val("");
+			$("#dialog").dialog("close");
+			show_keyboard(after);
+			
+		}
+		else
+		{
+			window.jeopardy.keyboard = parseInt($("#keyboard").val());
+			$("#dialog").dialog("close");
+			after();
+		}
+	}});
+
+	$("#dialog").dialog();
+}
+
 // gets the clicked coordinates, checks the global array if the quesiton has been answered, if not tracks who has answered and whether or not a square is a daily double.  Lastly, it inserts the question fullscreen
 function show_question(click){
 	var element = click.target;
-	window.board.current_column = $(element).attr('id').replace(/^\D+/g, '');
-	window.board.current_row = $(element).parent().attr('id').replace(/^\D+/g, '');
+	window.jeopardy.current_column = $(element).attr('id').replace(/^\D+/g, '');
+	window.jeopardy.current_row = $(element).parent().attr('id').replace(/^\D+/g, '');
 
 	// don't react to already answered questions
-	if (window.board[window.board.current_row][window.board.current_column] == "answered")
+	if (window.board[window.jeopardy.current_row][window.jeopardy.current_column] == "answered")
 	{
 		return;
 	}
 
 	// no one has tried to answer yet
-	window.board.t1answered = false;
-	window.board.t2answered = false;
+	window.jeopardy.t1answered = false;
+	window.jeopardy.t2answered = false;
 
 	// remember this question for easy access
-	window.board.current_question = window.board[window.board.current_row][window.board.current_column];
+	window.jeopardy.current_question = window.board[window.jeopardy.current_row][window.jeopardy.current_column];
 
 	var dd = "";
 	// check if daily double
-	if (window.board.current_question.question.dj == true)
+	if (window.jeopardy.current_question.question.dj == true)
 	{
+		play_sound("daily_double");
 		dd = "Daily Double: ";
+
+		// disable clicks elsewhere until input is reached
+		window.jeopardy.disable_clicks = true;
+		$("#question").html("DAILY DOUBLE").fitText(1.0, { minFontSize: '100px'});
+		$("#fullscreen").show();
+
+		// show the keyboard then do the following:
+		show_keyboard(function(){
+			$("#question").html(dd + window.board[window.jeopardy.current_row][window.jeopardy.current_column].question.q).fitText(1.0, { minFontSize: '100px'});
+			window.jeopardy.disable_clicks = false;
+		});
+
+		return;
 	}
 
-	$("#question").html(dd + window.board[window.board.current_row][window.board.current_column].question.q).fitText(1.0, { minFontSize: '100px'});
+	// normal question, show the question
+	$("#question").html(dd + window.board[window.jeopardy.current_row][window.jeopardy.current_column].question.q).fitText(1.0, { minFontSize: '100px'});
 	$("#fullscreen").fadeIn();
 }
 

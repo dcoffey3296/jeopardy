@@ -25,6 +25,22 @@ if ($game = json_decode(file_get_contents("boards/" . $_GET["f"])) == false)
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+		<!-- jQuery & jQueryUI + theme -->
+		<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+		<!-- keyboard widget css & script -->
+		<link href="css/keyboard.css" rel="stylesheet">
+		<script src="js/jquery.keyboard.js"></script>
+
+		<!-- keyboard optional extensions -->
+		<script src="js/jquery.mousewheel.js"></script>
+		<script src="js/jquery.keyboard.extension-autocomplete.js"></script>
+		<script src="js/jquery.keyboard.extension-typing.js"></script>
+		<script src="js/jquery.keyboard.extension-mobile.js"></script>
+		<script src="js/jquery.keyboard.extension-navigation.js"></script>
+		<script src="js/jquery.keyboard.extension-scramble.js"></script>
+
 		<script src="lib/FitText.js/jquery.fittext.js"></script>
 		<script src="js/jeopardy.js"></script>
 
@@ -58,6 +74,19 @@ if ($game = json_decode(file_get_contents("boards/" . $_GET["f"])) == false)
 				</div>
 			</div>
 		</div>
+		<div style="visibility:hidden;" id="sounds">
+			<audio src="assets/daily_double.mp3" id="sound_daily_double"></audio>
+			<audio src="assets/time_up.mp3" id="sound_time_up"></audio>
+			<audio src="assets/jeopardy_open.mp3" id="sound_jeopardy_open"></audio>
+			<audio src="assets/final_jeopardy.mp3" id="sound_final_jeopardy"></audio>
+			<audio src="assets/buzz.mp3" id="sound_buzz"></audio>
+			<audio src="assets/ding.mp3" id="sound_ding"></audio>
+			<audio src="assets/populate.mp3" id="sound_populate"></audio>
+		</div>
+		<div id="dialog" title="What is your wager?" style="display:none">
+		  <textarea id="keyboard" placeholder="0"></textarea>
+		</div>
+
 	</body>
 
 </html>
