@@ -31,6 +31,7 @@ $(document).ready(function(){
 
 	// load and draw the board
 	load_board();
+	update_scores();
 
 	play_sound("populate");
 
@@ -53,7 +54,7 @@ $(document).ready(function(){
 	}
 
 	// check if this is for final jeopardy
-	if (window.round == 3)
+	if (window.round == 2)
 	{
 		play_sound("final_jeopardy");
 		alert("final_jeopardy");
@@ -299,7 +300,7 @@ function clear_rowcol(){
 }
 
 function goto_next_round(){
-	var redirect = "jeopardy.php?t1=" + $("#t1_score").val() + "&t2=" + $("#t1_score").val() + "&t1=" + $("#t1_holder").val() + "&t2=" + $("#t2_holder").val() + "&r=" + (parseInt(window.round) + 1) + "&f1=" + window.jeopardy.f1 + "&f2=" + window.jeopardy.f2;
+	var redirect = "jeopardy.php?t1_score=" + $("#t1_score").html() + "&t2_score=" + $("#t2_score").html() + "&t1=" + $("#t1").html() + "&t2=" + $("#t2").html() + "&r=" + (parseInt(window.round) + 1) + "&f1=" + window.jeopardy.f1 + "&f2=" + window.jeopardy.f2;
 
 	// send to the appropriate file
 	if (parseInt(window.round) == 0)
