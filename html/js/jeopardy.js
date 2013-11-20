@@ -469,30 +469,34 @@ function show_keyboard(after){
 
 
 	$("#dialog").dialog();
+
+	// process the info on blur()
+	$("#keyboard").blur(function(){
+			if (isNaN(parseInt($("#keyboard").val())) || parseInt($("#keyboard").val()) < 1)
+			{
+				console.log("not a number");
+				$("#keyboard").val("");
+				$("dialog").dialog("close");
+				show_keyboard(after);
+			}
+			else
+			{
+				window.jeopardy.keyboard = parseInt($("#keyboard").val());
+				$("#dialog").dialog("close");
+				after();
+			}
+		});
+
 	$("body").on("keypress", "#keyboard", function(press){
-		alert(press.keyCode);
+		// if the user hits enter get rid of the dialog
 		if (press.keyCode == 13)
 		{
-			$("#dialog").focus();
+			$("#keyboard").blur();
 		}
 	});
 
 	$("keyboard").focus();
-	$("keyboard").blur(function(){
-		if (isNaN(parseInt($("#keyboard").val())) || parseInt($("#keyboard").val()) < 1)
-		{
-			console.log("not a number");
-			$("#keyboard").val("");
-			$("dialog").dialog("close");
-			show_keyboard(after);
-		}
-		else
-		{
-			window.jeopardy.keyboard = parseInt($("#keyboard").val());
-			$("#dialog").dialog("close");
-			after();
-		}
-	});
+	
 }
 
 // gets the clicked coordinates, checks the global array if the quesiton has been answered, if not tracks who has answered and whether or not a square is a daily double.  Lastly, it inserts the question fullscreen
