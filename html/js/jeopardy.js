@@ -447,15 +447,36 @@ function show_correct(){
 // pop up the virtual keyboard
 function show_keyboard(after){
 	// initialize the number pad, setup callbacks
-	$('#keyboard').keyboard({layout: 'num', accepted:function(callback){
+	// $('#keyboard').keyboard({layout: 'num', accepted:function(callback){
+	// 	if (isNaN(parseInt($("#keyboard").val())) || parseInt($("#keyboard").val()) < 1)
+	// 	{
+	// 		console.log("not a number");
+	// 		$("#keyboard").getkeyboard().destroy();
+	// 		$("#keyboard").val("");
+	// 		$("#dialog").dialog("close");
+	// 		show_keyboard(after);
+			
+	// 	}
+	// 	else
+	// 	{
+	// 		window.jeopardy.keyboard = parseInt($("#keyboard").val());
+	// 		$("#dialog").dialog("close");
+	// 		after();
+	// 	}
+	// }});
+
+	// $("#dialog").dialog();
+
+
+	$("#dialog").dialog();
+	$("keyboard").focus();
+	$("keyboard").blur(function(){
 		if (isNaN(parseInt($("#keyboard").val())) || parseInt($("#keyboard").val()) < 1)
 		{
 			console.log("not a number");
-			$("#keyboard").getkeyboard().destroy();
 			$("#keyboard").val("");
-			$("#dialog").dialog("close");
+			$("dialog").dialog("close");
 			show_keyboard(after);
-			
 		}
 		else
 		{
@@ -463,9 +484,7 @@ function show_keyboard(after){
 			$("#dialog").dialog("close");
 			after();
 		}
-	}});
-
-	$("#dialog").dialog();
+	});
 }
 
 // gets the clicked coordinates, checks the global array if the quesiton has been answered, if not tracks who has answered and whether or not a square is a daily double.  Lastly, it inserts the question fullscreen
