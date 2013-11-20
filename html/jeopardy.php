@@ -27,7 +27,7 @@ if ($game = json_decode(file_get_contents("boards/" . $_GET["f"])) == false)
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 		<!-- jQuery & jQueryUI + theme -->
 		<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
 
 		<!-- keyboard widget css & script -->
 		<link href="css/keyboard.css" rel="stylesheet">
