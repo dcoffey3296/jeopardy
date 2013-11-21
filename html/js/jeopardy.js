@@ -29,9 +29,7 @@ $(document).ready(function(){
 		window.score.t2 = parseInt(query_string("t2_score"));
 	}
 
-	// load and draw the board
-	load_board();
-	update_scores();
+
 
 	play_sound("populate");
 
@@ -58,10 +56,37 @@ $(document).ready(function(){
 	{
 		play_sound("final_jeopardy");
 		alert("final_jeopardy");
+
+		$("#question").html("Category: " + window.data["category"], function(){
+			$("#fullscreen").show();
+
+			// start with 0 wagers (the students will show)
+			window.jeopardy.t1_wager = 0;
+			window.jeopardy.t2_wager = 0;
+
+			// on click, show the question
+			$("#fullscreen").bind("click", function(){
+				$("#question").html(window.data["q"]);
+				$("#fullscreen").off("click");
+
+				// click again to play the music
+				$("fullscreen").bind("click", function(){
+					play_sound("final_jeopardy");
+					$("#fullscreen").off("click");
+					$("#fullscreen").bind("click", function({
+						$("#question").html(window.data["a"]);
+						$("#fullscreen").off("click")
+					});
+				});
+				
+			});
+
+		}
 	}
 
-
-
+	// load and draw the board
+	load_board();
+	update_scores();
 
 	// set up event listeners
 	$("#board td").bind("click", event, function(){
