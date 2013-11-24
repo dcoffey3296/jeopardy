@@ -85,7 +85,7 @@
         },
         "400" : {
           "q" : "How do you print to the console in javascript?",
-          "a" : "console.log('like this!'');",
+          "a" : "console.log('like this!');",
     		  "c" : false,
     		  "i" : false,
           "dj" : false
