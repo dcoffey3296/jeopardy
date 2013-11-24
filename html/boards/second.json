@@ -151,7 +151,7 @@
         }
     },
     
-    "Potpourri" : {
+    "rand" : {
         "200" : {
           "q" : "why do java developers wear glasses?",
           "a" : "because they can't C",

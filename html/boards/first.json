@@ -151,7 +151,7 @@
         }
     },
     
-    "Potpourri" : {
+    "rand" : {
         "100" : {
           "q" : "how many command line arguments are in <br/>'make I cannot think of questions'",
           "a" : "5.. i think",
