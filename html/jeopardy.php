@@ -54,7 +54,7 @@ if ($game = json_decode(file_get_contents("boards/" . $_GET["cf"])) == false)
 		<div id="score_holder">
 			<div id="t1_holder" class="scorecard">
 				<p id="t1" class="team"><?= $_GET["t1"] ?></p>
-				<div id="t1_score"></div>
+				<div id="t1_score" class="score"></div>
 				<div id="t1_adjust_holder" class="adjuster">
 					<table id="t1_adjust" class="adjuster">
 						<tr>
@@ -65,7 +65,7 @@ if ($game = json_decode(file_get_contents("boards/" . $_GET["cf"])) == false)
 			</div>
 			<div id="t2_holder" class="scorecard">
 				<p id="t2" class="team"><?= $_GET["t2"] ?></p>
-				<div id="t2_score"></div>
+				<div id="t2_score" class="score"></div>
 				<div id="t2_adjust_holder" class="adjuster">
 					<table id="t2_adjust" class="adjuster">
 						<tr>
@@ -76,7 +76,7 @@ if ($game = json_decode(file_get_contents("boards/" . $_GET["cf"])) == false)
 			</div>
 			<div id="t3_holder" class="scorecard">
 				<p id="t3" class="team"><?= $_GET["t3"] ?></p>
-				<div id="t3_score"></div>
+				<div id="t3_score" class="score"></div>
 				<div id="t3_adjust_holder" class="adjuster">
 					<table id="t3_adjust" class="adjuster">
 						<tr>
@@ -109,7 +109,7 @@ if ($game = json_decode(file_get_contents("boards/" . $_GET["cf"])) == false)
 			<audio src="assets/ding.mp3" id="sound_ding"></audio>
 			<audio src="assets/populate.mp3" id="sound_populate"></audio>
 		</div>
-		<div id="dialog" title="What is your wager?" style="display:none">
+		<div id="dialog" title="Manual Adjust" style="display:none">
 		  <input id="keyboard" type="number" placeholder="0"></input>
 		</div>
 		<div id="hidden-resizer" style=""></div>

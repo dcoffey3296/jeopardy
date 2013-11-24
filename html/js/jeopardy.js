@@ -171,7 +171,10 @@ $(document).ready(function(){
 
 	$("#board .th-4").bind("click", function(){
 
-		alert("options to skip to next round");
+		if (confirm('Move on to the next round?'))
+		{
+			goto_next_round();
+		}
 	});
 
 	// $("#right").bind("click", function(){
@@ -206,7 +209,16 @@ $(document).ready(function(){
 	// 	reset_all_clicked();
 	// });
 
+	$(".plus_100").bind("click", function(){
+		adjust_score(event.target, 100);
+	});
+	$(".minus_100").bind("click", function(){
+		adjust_score(event.target, -100);
+	});
 
+	$(".score").bind("click", function(){
+		manual_score(event.target);
+	});
 });
 
 // function to calculate the point value and call award_points() based on which is the global, current_team
@@ -334,7 +346,7 @@ function clear_rowcol(){
 }
 
 function goto_next_round(){
-	var redirect = "jeopardy.php?t1_score=" + $("#t1_score").html() + "&t2_score=" + $("#t2_score").html() + "&t1=" + $("#t1").html() + "&t2=" + $("#t2").html() + "&r=" + (parseInt(window.jeopardy.round) + 1) + "&f1=" + window.jeopardy.f1 + "&f2=" + window.jeopardy.f2;
+	var redirect = "jeopardy.php?t1_score=" + $("#t1_score").html() + "&t2_score=" + $("#t2_score").html() + "&t1=" + $("#t1").html() + "&t2=" + $("#t2").html() + "&t3=" + $("#t3").html()+ "&r=" + (parseInt(window.jeopardy.round) + 1) + "&f1=" + window.jeopardy.f1 + "&f2=" + window.jeopardy.f2;
 
 	// send to the appropriate file
 	if (parseInt(window.jeopardy.round) == 0)
@@ -445,6 +457,55 @@ function play_sound(sound)
 	document.getElementById('sound_' + sound).play();
 }
 
+function adjust_score(target, amount)
+{
+	switch ($(target).parent().parent().parent().parent().parent().children("p:first").attr("id"))
+	{
+		case "t1":
+			window.score.t1 += amount;
+			break;
+		case "t2":
+			window.score.t2 += amount;
+			break;
+		case "t3":
+			window.score.t3 += amount;
+			break;
+		default:
+			// alert("unknown team");
+	}
+
+	update_scores();
+}
+
+function manual_score(click)
+{
+	var who = $(click).parent().children("p:first").attr("id");
+
+	show_keyboard(function(amount){
+
+		switch (who)
+		{
+			case "t1":
+				window.score.t1 = window.jeopardy.keyboard;
+				break;
+			case "t2":
+				window.score.t2 = window.jeopardy.keyboard;
+				break;
+			case "t3":
+				window.score.t3 = window.jeopardy.keyboard;
+				break;
+			default:
+				// alert("unknown team");
+		}
+
+		update_scores();
+	});
+
+
+	
+}
+
+
 // function to get a specified query parameter from the get string: http://stackoverflow.com/questions/7731778/jquery-get-query-string-parameters
 function query_string(key) {
     key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
@@ -473,26 +534,29 @@ function remove_and_update(){
 // reset all button CSS
 function reset_all_clicked(){
 	var buttons = ["#cancel"];
-	console.log("in reset");
 	for (var b in buttons)
 	{
-		console.log("resetting " + buttons[b]);
 		style_clicked_reset(buttons[b]);
 	}
 }
 
 // replaces the question text with the answer text
 function toggle_answer(after){
+	var answer = "Answer: " + window.board[window.jeopardy.current_row][window.jeopardy.current_column].question.a;
+	var question = window.board[window.jeopardy.current_row][window.jeopardy.current_column].question.q;
+
 	if (window.jeopardy.answer_showing == false)
 	{
 		window.jeopardy.answer_showing = true;
 		window.jeopardy.answer_was_showing = true;
-		$("#question").html("Answer: " + window.board[window.jeopardy.current_row][window.jeopardy.current_column].question.a);
+		set_font_size(answer, "#question");
+		$("#question").html(answer);
 	}
 	else
 	{
 		window.jeopardy.answer_showing = false;
-		$("#question").html(window.board[window.jeopardy.current_row][window.jeopardy.current_column].question.q);
+		set_font_size(answer, "#question");
+		$("#question").html(question);
 	}
 	
 	if (typeof after != 'undefined')
@@ -508,6 +572,7 @@ function show_correct(){
 
 // pop up the virtual keyboard
 function show_keyboard(after){
+
 	// initialize the number pad, setup callbacks
 	// $('#keyboard').keyboard({layout: 'num', accepted:function(callback){
 	// 	if (isNaN(parseInt($("#keyboard").val())) || parseInt($("#keyboard").val()) < 1)
@@ -530,34 +595,43 @@ function show_keyboard(after){
 	// $("#dialog").dialog();
 
 
-	// $("#dialog").dialog();
+	$("#dialog").dialog();
 
-	// // process the info on blur()
-	// $("#keyboard").blur(function(){
-	// 		if (isNaN(parseInt($("#keyboard").val())) || parseInt($("#keyboard").val()) < 1)
-	// 		{
-	// 			console.log("not a number");
-	// 			$("#keyboard").val("");
-	// 			$("dialog").dialog("close");
-	// 			show_keyboard(after);
-	// 		}
-	// 		else
-	// 		{
-	// 			window.jeopardy.keyboard = parseInt($("#keyboard").val());
-	// 			$("#dialog").dialog("close");
-	// 			after();
-	// 		}
-	// 	});
+	// process the info on blur()
+	$("#keyboard").blur(function(){
+			// stop listening for the blur, it happened
+			$("#keyboard").off("blur");
 
-	// $("body").on("keypress", "#keyboard", function(press){
-	// 	// if the user hits enter get rid of the dialog
-	// 	if (press.keyCode == 13)
-	// 	{
-	// 		$("#keyboard").blur();
-	// 	}
-	// });
+			if (isNaN(parseInt($("#keyboard").val())) || parseInt($("#keyboard").val()) < 1)
+			{
+				$("#keyboard").val("");
+				$("dialog").dialog("close");
+				show_keyboard(after);
+			}
+			else
+			{
+				window.jeopardy.keyboard = parseInt($("#keyboard").val());
+				$("#dialog").dialog("close");
+				$("#keyboard").val("");
+				
+				// run the callback
+				if (typeof after != "undefined")
+				{
+					after();
+				}
+			}
+			return;
+		});
 
-	// $("#keyboard").focus();
+	$("body").on("keypress", "#keyboard", function(press){
+		// if the user hits enter get rid of the dialog
+		if (press.keyCode == 13)
+		{
+			$("#keyboard").blur();
+		}
+	});
+
+	$("#keyboard").focus();
 	
 }
 
@@ -574,8 +648,8 @@ function show_question(click){
 	}
 
 	// no one has tried to answer yet
-	window.jeopardy.t1answered = false;
-	window.jeopardy.t2answered = false;
+	// window.jeopardy.t1answered = false;
+	// window.jeopardy.t2answered = false;
 
 	// remember this question for easy access
 	window.jeopardy.current_question = window.board[window.jeopardy.current_row][window.jeopardy.current_column];
@@ -585,19 +659,19 @@ function show_question(click){
 	if (window.jeopardy.current_question.question.dj == true)
 	{
 		play_sound("daily_double");
-		dd = "Daily Double ";
-
+		dd = "Daily Double</br></br>what is your wager?"
 		// disable the fullscreen click if it exists
 		$("#fullscreen").off("click");
 
-		// disable clicks elsewhere until input is reached
-		$("#question").html("DAILY DOUBLE")/*.fitText(1.0, { minFontSize: '25px'})*/;
+		set_font_size(dd, "#question");
+		$("#question").html(dd)/*.fitText(1.0, { minFontSize: '25px'})*/;
 		$("#fullscreen").show();
 
 		// show the question then disable the fullscreen clicks
 		$("#fullscreen").bind("click", function(){
-			var question = dd + ": " + window.board[window.jeopardy.current_row][window.jeopardy.current_column].question.q;
+			var question = window.board[window.jeopardy.current_row][window.jeopardy.current_column].question.q;
 			$("#question").html(question)/*.fitText(1.0, { minFontSize: '100px'})*/;
+			set_font_size(question, "#question");
 			$("#fullscreen").off("click");
 		});
 
@@ -641,7 +715,7 @@ function set_font_size(text, div){
 
 	if (text.length > 200)
 		$(div).css("font-size", "25px");
-	else if (text.length > 100)
+	else if (text.length > 90)
 		$(div).css("font-size", "76px");
 	else if (text.length > 70)
 		$(div).css("font-size", "100px");
