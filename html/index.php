@@ -57,6 +57,10 @@
 		            <div class="controls">  
 		              <input type="text" class="input-xlarge" id="t2" name="t2">  
 		            </div> 
+		            <label class="control-label" for="t3">Team 3</label>  
+		            <div class="controls">  
+		              <input type="text" class="input-xlarge" id="t3" name="t3">  
+		            </div>  
 		            	<input type="text"  name="r" value="0" style="visibility:hidden;"></input>
 		          </div>  
 		          <div class="form-actions">  

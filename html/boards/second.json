@@ -105,8 +105,8 @@
           "dj" : false
         },
         "1000" : {
-          "q" : "who will own the internet in the future?",
-          "a" : "Al Gore",
+          "q" : "Clark's 3rd law?",
+          "a" : "Any sufficiently advanced technology is indistinguishable from magic.",
     		  "c" : false,
     		  "i" : false,
           "dj" : false
@@ -174,15 +174,15 @@
           "dj" : false
         },
         "800" : {
-          "q" : "Is Jonathan Zittrain a Harvard Professor?",
-          "a" : "Yes",
+          "q" : "What is Stuxnet?",
+          "a" : "A computer worm that is very undetectable",
     		  "c" : false,
     		  "i" : false,
           "dj" : false
         },
         "1000" : {
-          "q" : "When are we going to reach the singularity?",
-          "a" : "No seriously. Bored. Ready for the robot apocalypse.",
+          "q" : "What used to allow you to make free long distance phone calls?",
+          "a" : "A Captain Crunch Whistle",
     		  "c" : false,
     		  "i" : false,
           "dj" : false

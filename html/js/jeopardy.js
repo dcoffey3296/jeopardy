@@ -38,7 +38,7 @@ $(document).ready(function(){
 
 
 
-	play_sound("populate");
+	
 
 	// check if this is for final jeopardy
 	if (query_string("r") != null && parseInt(query_string("r")) > 0)
@@ -58,35 +58,58 @@ $(document).ready(function(){
 		window.jeopardy.f2 = query_string("f2");
 	}
 
+	$(".plus_100").bind("click", function(){
+		adjust_score(event.target, 100);
+	});
+	$(".minus_100").bind("click", function(){
+		adjust_score(event.target, -100);
+	});
+
+	$(".score").bind("click", function(){
+		manual_score(event.target);
+	});
+
 	// check if this is for final jeopardy
 	if (window.jeopardy.round == 2)
 	{
+		console.log("final");
 		update_scores();
-		$("#question").html("Category: " + window.data["category"], function(){
-			$("#fullscreen").show();
+		set_font_size("FINAL JEOPARDY<br/>Category:</br>" + window.data["category"], "#question");
+		$("#question").html("FINAL JEOPARDY<br/>Category:</br>" + window.data["category"]);
+		$("#fullscreen").show();
 
-			// start with 0 wagers (the students will show)
-			// window.jeopardy.t1_wager = 0;
-			// window.jeopardy.t2_wager = 0;
+		draw_board();
+		$("#cancel").bind("click", function(){
+			document.getElementById('sound_final_jeopardy').pause();
+			$("#award_holder").remove();
+		});
 
-			// on click, show the question
-			$("#fullscreen").bind("click", function(){
-				$("#question").html(window.data["q"]);
-				$("#fullscreen").off("click");
+		// start with 0 wagers (the students will show)
+		// window.jeopardy.t1_wager = 0;
+		// window.jeopardy.t2_wager = 0;
 
-				// click again to play the music
-				$("fullscreen").bind("click", function(){
-					play_sound("final_jeopardy");
-					$("#fullscreen").off("click");
-					$("#fullscreen").bind("click", function(){
-						$("#question").html(window.data["a"]);
-						$("#fullscreen").off("click")
-					});
-				});				
-			});
+		// on click, show the question
+		$("#question").bind("click", function(){
+
+			set_font_size("Category: " + window.data["q"], "#question");
+			$("#question").html(window.data["q"]);
+			$("#question").off("click");
+
+			// click again to play the music
+			$("#question").bind("click", function(){
+				play_sound("final_jeopardy");
+				$("#question").off("click");
+				$("#question").bind("click", function(){
+					set_font_size(window.data["a"], "#question");
+					$("#question").html(window.data["a"]);
+					$("#question").off("click");
+				});
+			});				
 		});
 		return;
 	}
+
+	play_sound("populate");
 
 	// load and draw the board
 	load_board();
@@ -209,16 +232,7 @@ $(document).ready(function(){
 	// 	reset_all_clicked();
 	// });
 
-	$(".plus_100").bind("click", function(){
-		adjust_score(event.target, 100);
-	});
-	$(".minus_100").bind("click", function(){
-		adjust_score(event.target, -100);
-	});
-
-	$(".score").bind("click", function(){
-		manual_score(event.target);
-	});
+	
 });
 
 // function to calculate the point value and call award_points() based on which is the global, current_team
@@ -718,7 +732,9 @@ function set_font_size(text, div){
 	else if (text.length > 90)
 		$(div).css("font-size", "76px");
 	else if (text.length > 70)
-		$(div).css("font-size", "100px");
+		$(div).css("font-size", "80px");
+	else if (text.length > 56)
+		$(div).css("font-size", "90px");
 	else if (text.length > 30)
 		$(div).css("font-size", "125px");
 	else if (text.length > 10)

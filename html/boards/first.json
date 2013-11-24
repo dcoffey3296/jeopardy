@@ -77,7 +77,7 @@
     
     "Code" : {
         "100" : {
-          "q" : "What does it mean Case: ; Case: ; Case foo in a switch?",
+          "q" : "What does it mean <br/>Case: ;<br/>Case: ;</br>Case foo </br>in a switch?",
           "a" : "All the Cases prior to that, execute.",
     		  "c" : false,
     		  "i" : false,
@@ -98,7 +98,7 @@
           "dj" : false
         },
         "400" : {
-          "q" : "What's the difference between array[0] and *(array+0)?",
+          "q" : "What's the difference between <br/>array[0]<br>and<br/>*(array+0)?",
           "a" : "Nothing, they're the same",
     		  "c" : false,
     		  "i" : false,
@@ -153,7 +153,7 @@
     
     "Potpourri" : {
         "100" : {
-          "q" : "how many command line arguments are in 'make I cannot think of questions'",
+          "q" : "how many command line arguments are in <br/>'make I cannot think of questions'",
           "a" : "5.. i think",
     		  "c" : false,
     		  "i" : false,

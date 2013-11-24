@@ -58,7 +58,7 @@ if ($game = json_decode(file_get_contents("boards/" . $_GET["cf"])) == false)
 				<div id="t1_adjust_holder" class="adjuster">
 					<table id="t1_adjust" class="adjuster">
 						<tr>
-							<td class="plus_100">+100</td><td class="minus_100">-100</td>
+							<td class="minus_100">-100</td><td class="plus_100">+100</td>
 						</tr>
 					</table>
 				</div>
@@ -69,7 +69,7 @@ if ($game = json_decode(file_get_contents("boards/" . $_GET["cf"])) == false)
 				<div id="t2_adjust_holder" class="adjuster">
 					<table id="t2_adjust" class="adjuster">
 						<tr>
-							<td class="plus_100">+100</td><td class="minus_100">-100</td>
+							<td class="minus_100">-100</td><td class="plus_100">+100</td>
 						</tr>
 					</table>
 				</div>
@@ -80,7 +80,7 @@ if ($game = json_decode(file_get_contents("boards/" . $_GET["cf"])) == false)
 				<div id="t3_adjust_holder" class="adjuster">
 					<table id="t3_adjust" class="adjuster">
 						<tr>
-							<td class="plus_100">+100</td><td class="minus_100">-100</td>
+							<td class="minus_100">-100</td><td class="plus_100">+100</td>
 						</tr>
 					</table>
 				</div>
