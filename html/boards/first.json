@@ -161,7 +161,7 @@
         },
         "200" : {
           "q" : "What is pointer -> element syntactic sugar for?",
-          "a" : "binary",
+          "a" : "(*pointer).element",
     		  "c" : false,
     		  "i" : false,
           "dj" : false
