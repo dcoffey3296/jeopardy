@@ -52,8 +52,39 @@ if ($game = json_decode(file_get_contents("boards/" . $_GET["cf"])) == false)
 	</head>
 	<body>
 		<div id="score_holder">
-			<div id="t1_holder" class="scorecard"><p id="t1"><?= $_GET["t1"] ?></p><div id="t1_score"></div></div>
-			<div id="t2_holder" class="scorecard"><p id="t2"><?= $_GET["t2"] ?></p><div id="t2_score"></div></div>
+			<div id="t1_holder" class="scorecard">
+				<p id="t1" class="team"><?= $_GET["t1"] ?></p>
+				<div id="t1_score"></div>
+				<div id="t1_adjust_holder" class="adjuster">
+					<table id="t1_adjust" class="adjuster">
+						<tr>
+							<td class="plus_100">+100</td><td class="minus_100">-100</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div id="t2_holder" class="scorecard">
+				<p id="t2" class="team"><?= $_GET["t2"] ?></p>
+				<div id="t2_score"></div>
+				<div id="t2_adjust_holder" class="adjuster">
+					<table id="t2_adjust" class="adjuster">
+						<tr>
+							<td class="plus_100">+100</td><td class="minus_100">-100</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div id="t3_holder" class="scorecard">
+				<p id="t3" class="team"><?= $_GET["t3"] ?></p>
+				<div id="t3_score"></div>
+				<div id="t3_adjust_holder" class="adjuster">
+					<table id="t3_adjust" class="adjuster">
+						<tr>
+							<td class="plus_100">+100</td><td class="minus_100">-100</td>
+						</tr>
+					</table>
+				</div>
+			</div>
 		</div>
 		
 
@@ -61,14 +92,9 @@ if ($game = json_decode(file_get_contents("boards/" . $_GET["cf"])) == false)
 			<div id="fullscreen" style="display:none" class="square">
 				<div id="question"></div>
 				<div id="award_holder">
-					<table id="correct_holder" style="display:none">
-						<tr>
-							<td id="right">RIGHT</td><td id="wrong">WRONG</td>
-						</tr>
-					</table>
 					<table id="award">
 						<tr>
-							<td id="award_t1"><?= $_GET["t1"] ?></td><td id="cancel">cancel</td><td id="award_t2"><?= $_GET["t2"] ?></td>
+							<td id="cancel">close</td>
 						</tr>
 					</table>
 				</div>
@@ -86,7 +112,7 @@ if ($game = json_decode(file_get_contents("boards/" . $_GET["cf"])) == false)
 		<div id="dialog" title="What is your wager?" style="display:none">
 		  <input id="keyboard" type="number" placeholder="0"></input>
 		</div>
-
+		<div id="hidden-resizer" style=""></div>
 	</body>
 
 </html>

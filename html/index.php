@@ -7,7 +7,7 @@
     {
         if ($file != "." && $file != ".." && strtolower(substr($file, strrpos($file, '.') + 1)) == 'json')
         {
-            $select = "<option value='$file'>$file</option>";
+            $select .= "<option value='$file'>$file</option>";
         }
     }
     closedir($handle);
