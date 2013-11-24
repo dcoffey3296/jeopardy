@@ -1,0 +1,192 @@
+{
+    "Hash Tables" : {
+        "200" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "400" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "600" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : true
+        },
+        "800" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "1000" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        }
+    },
+    
+    "Stackes & Queues" : {
+        "200" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "400" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "600" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "800" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "1000" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        }
+    },
+    
+    "PHP & JavaScript" : {
+        "200" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "400" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "600" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "800" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "1000" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        }
+    },
+    
+    "HTML & CSS" : {
+        "200" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "400" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "600" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "800" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "1000" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        }
+    },
+    
+    "Potpourri" : {
+        "200" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "400" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "600" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "800" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "1000" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        }
+    }
+}
+        

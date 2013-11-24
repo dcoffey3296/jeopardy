@@ -1,0 +1,192 @@
+{
+    "Binary & ASCII" : {
+        "100" : {
+          "q" : "What is the ASCII value for 'A'?",
+          "a" : "65",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "200" : {
+          "q" : "What is the ASCII value for 'B'?",
+          "a" : "66",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "300" : {
+          "q" : "Please convert 50 into binary.",
+          "a" : "110010",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : true
+        },
+        "400" : {
+          "q" : "If you had 1000 bottles of wine, one of which is poisoned, theoretically, what is the minimum number of bits of information do you need to find out which one is poisoned?",
+          "a" : "10 bits, (2^10 = 1024)",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "500" : {
+          "q" : "What is the answer to life the universe and everything? (in binary)",
+          "a" : "101010",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        }
+    },
+    
+    "Compilers and Libraries" : {
+        "100" : {
+          "q" : "what is a lbirary",
+          "a" : "A library in C is a group of functions and declarations, exposed for use by other programs.",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "200" : {
+          "q" : "List 4 steps of compiling",
+          "a" : "Pre-processing, compiling, assembling, linking",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "300" : {
+          "q" : "What is C?",
+          "a" : "A programming language.",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "400" : {
+          "q" : "How do you insert a library in c?",
+          "a" : "<#cs50library>",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "500" : {
+          "q" : "What does #include mean?",
+          "a" : "It basically takes all the code from the heterofile that you #included and pastes it on top of your own code.",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        }
+    },
+    
+    "Code" : {
+        "100" : {
+          "q" : "What does it mean Case: ; Case: ; Case foo in a switch?",
+          "a" : "All the Cases prior to that, execute.",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "200" : {
+          "q" : "????",
+          "a" : "Brain is fried. Sorry.",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "300" : {
+          "q" : "What is the scope of a constant defined using #define at the top of the file?",
+          "a" : "Can be used anywhere throughout the file.",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "400" : {
+          "q" : "What's the difference between array[0] and *(array+0)?",
+          "a" : "Nothing, they're the same",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "500" : {
+          "q" : "How is C typed?",
+          "a" : "pretty strongly",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : true
+        }
+    },
+    
+    "Computers" : {
+        "100" : {
+          "q" : "asdf",
+          "a" : "asdf",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "200" : {
+          "q" : "What is the worst case running time of bubble sort?",
+          "a" : "O(n^2)",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "300" : {
+          "q" : "How might one cause a memory leak when using malloc?",
+          "a" : "By forgetting to release the memory allocated by calling free().",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "400" : {
+          "q" : "Where is the memory allocated by malloc() located?",
+          "a" : "the Heap",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "500" : {
+          "q" : "Merge sort",
+          "a" : "What is the most efficient sorting algorithm we learned?",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        }
+    },
+    
+    "Potpourri" : {
+        "100" : {
+          "q" : "how many command line arguments are in 'make I cannot think of questions'",
+          "a" : "5.. i think",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "200" : {
+          "q" : "What is pointer -> element syntactic sugar for?",
+          "a" : "binary",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "300" : {
+          "q" : "Why does 7 / 2 equal to 3?",
+          "a" : "Division by an integer yields an integer.",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "400" : {
+          "q" : "What's the securest form of encryption out there?",
+          "a" : "Caesar 26.",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "500" : {
+          "q" : "What does the fox say?",
+          "a" : "Bay-buh-day bum-bum bay-dum",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        }
+    }
+}
+        

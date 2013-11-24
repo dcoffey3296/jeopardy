@@ -1,0 +1,192 @@
+{
+    "Hash Tables" : {
+        "200" : {
+          "q" : "In general are tries faster than hash tables?",
+          "a" : "No! Which is one of the reasons why hash tables are used EVERYWHERE and nobody really uses tries.",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "400" : {
+          "q" : "Which tends to take up more memory, a hash table or a trie?",
+          "a" : "A trie?",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "600" : {
+          "q" : "How do you link lists?",
+          "a" : "with a hash table",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : true
+        },
+        "800" : {
+          "q" : "Where does the word trie come from?",
+          "a" : "Retrieval ",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "1000" : {
+          "q" : "What must you remember to do after fopening a file?",
+          "a" : "check for null (and Chuck Norris)",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        }
+    },
+    
+    "Programming" : {
+        "200" : {
+          "q" : "Why do programmers always mix up Halloween and Christmas?",
+          "a" : "Because Oct 31 == Dec 25!",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "400" : {
+          "q" : "Though most well known for serving up Blizzards, in terms of data structures, what is the dequeue function responsible for?",
+          "a" : "Retrieving an element at a queue's head.",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : true
+        },
+        "600" : {
+          "q" : "What's a tree?",
+          "a" : "A large plant. (yea, never heard that one before huh?)",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "800" : {
+          "q" : "In regards to trees, what is a node without any children called?",
+          "a" : "A leaf node.",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "1000" : {
+          "q" : "What is the O for inserting data into a trie?",
+          "a" : "Constant, thus on a magnitude of 1.",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        }
+    },
+    
+    "Internets" : {
+        "200" : {
+          "q" : "What is HTTP used for?",
+          "a" : "Web programming.",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "400" : {
+          "q" : "How do you print to the console in javascript?",
+          "a" : "console.log('like this!'');",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "600" : {
+          "q" : "What does the status code 403 mean? ",
+          "a" : "Forbidden",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "800" : {
+          "q" : "What lock pictures can you trust?",
+          "a" : "The green ones in chrome.",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "1000" : {
+          "q" : "who will own the internet in the future?",
+          "a" : "Al Gore",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        }
+    },
+    
+    "HTTP, HTML & CSS" : {
+        "200" : {
+          "q" : "Haven't watched yet, honestly...",
+          "a" : "sorry.",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "400" : {
+          "q" : "What are the four jquery commands?",
+          "a" : "Insert, Delete, Search and Traverse",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "600" : {
+          "q" : "What is better? Html or php?",
+          "a" : "php",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "800" : {
+          "q" : "Should I type https://www. before all my urls?",
+          "a" : "If i really really really want to be secure then probably.",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "1000" : {
+          "q" : "What is the meaning of life?",
+          "a" : "Cats.",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        }
+    },
+    
+    "Potpourri" : {
+        "200" : {
+          "q" : "why do java developers wear glasses?",
+          "a" : "because they can't C",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "400" : {
+          "q" : "Give me an example of unowned technology",
+          "a" : "the Internetz. Which is why it's both powerful and dangerous. ",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "600" : {
+          "q" : "What iconic superhero did Zittrain use to describe the 'nerd in windowless rooms'?",
+          "a" : "Batman",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "800" : {
+          "q" : "Is Jonathan Zittrain a Harvard Professor?",
+          "a" : "Yes",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "1000" : {
+          "q" : "When are we going to reach the singularity?",
+          "a" : "No seriously. Bored. Ready for the robot apocalypse.",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        }
+    }
+}
+        

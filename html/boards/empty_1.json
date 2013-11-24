@@ -1,0 +1,192 @@
+{
+    "Binary" : {
+        "100" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "200" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "300" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : true
+        },
+        "400" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "500" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        }
+    },
+    
+    "Compilers and Libraries" : {
+        "100" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "200" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "300" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "400" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "500" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        }
+    },
+    
+    "Searching and Sorting" : {
+        "100" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "200" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "300" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "400" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "500" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        }
+    },
+    
+    "Memory" : {
+        "100" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "200" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "300" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "400" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "500" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        }
+    },
+    
+    "Potpourri" : {
+        "100" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "200" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "300" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "400" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        },
+        "500" : {
+          "q" : "",
+          "a" : "",
+    		  "c" : false,
+    		  "i" : false,
+          "dj" : false
+        }
+    }
+}
+        
